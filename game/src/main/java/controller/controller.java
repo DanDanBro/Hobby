@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import main.java.javafx.Pref;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,8 +24,8 @@ public class controller implements Initializable {
     @FXML
     private transient CheckBox darkmode;
 
-    transient String dark = getClass().getResource("/javafx/resources/dark.css").toExternalForm();
-    transient String light = getClass().getResource("/javafx/resources/light.css").toExternalForm();
+    transient String dark = getClass().getResource("/dark.css").toExternalForm();
+    transient String light = getClass().getResource("/light.css").toExternalForm();
 
     transient Preferences pref = new Pref().getPrefs();
 
@@ -36,8 +35,7 @@ public class controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (pref.getBoolean("darkmode", true)) {
             anchorPane.getStylesheets().add(dark);
-        }
-        else {
+        } else {
             anchorPane.getStylesheets().add(light);
         }
     }
@@ -57,7 +55,7 @@ public class controller implements Initializable {
     public void gotoMenu(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/javafx/resources/menu.fxml"));
+                    "/menu.fxml"));
             Parent root1 = fxmlLoader.load();
             changeScene(root1, fxmlLoader.getController());
         } catch (IOException e) {
@@ -71,7 +69,7 @@ public class controller implements Initializable {
     public void gotoSettings(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/javafx/resources/settings.fxml"));
+                    "/settings.fxml"));
             Parent root1 = fxmlLoader.load();
             changeScene(root1, fxmlLoader.getController());
         } catch (IOException e) {
@@ -85,7 +83,7 @@ public class controller implements Initializable {
     public void gotoGame(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/javafx/resources/game.fxml"));
+                    "/game.fxml"));
             Parent root1 = fxmlLoader.load();
             changeScene(root1, fxmlLoader.getController());
         } catch (IOException e) {
@@ -96,7 +94,7 @@ public class controller implements Initializable {
     public void gotChess(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/javafx/resources/chessBoard.fxml"));
+                    "/chessBoard.fxml"));
             Parent root1 = fxmlLoader.load();
             changeScene(root1, fxmlLoader.getController());
         } catch (IOException e) {
@@ -107,7 +105,7 @@ public class controller implements Initializable {
     public void gotoDamn(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/javafx/resources/damnBoard.fxml"));
+                    "/damnBoard.fxml"));
             Parent root1 = fxmlLoader.load();
             changeScene(root1, fxmlLoader.getController());
         } catch (IOException e) {
@@ -121,7 +119,7 @@ public class controller implements Initializable {
     public void gotoCalc(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/javafx/resources/calculator.fxml"));
+                    "/calculator.fxml"));
             Parent root1 = fxmlLoader.load();
             changeScene(root1, fxmlLoader.getController());
         } catch (IOException e) {
@@ -135,7 +133,7 @@ public class controller implements Initializable {
     public void logOut(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/javafx/resources/start.fxml"));
+                    "/start.fxml"));
             Parent root1 = fxmlLoader.load();
             mediaPlayer.stop();
             Stage stage = (Stage) anchorPane.getScene().getWindow();
@@ -152,8 +150,7 @@ public class controller implements Initializable {
         if (darkmode.isSelected()) {
             anchorPane.getStylesheets().remove(light);
             anchorPane.getStylesheets().add(dark);
-        }
-        else  {
+        } else {
             anchorPane.getStylesheets().remove(dark);
             anchorPane.getStylesheets().add(light);
         }

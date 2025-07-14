@@ -1,9 +1,12 @@
 package controller;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -38,8 +41,7 @@ public class loginController extends controller {
         }
         if (pref.getBoolean("darkmode", true)) {
             anchorPane.getStylesheets().add(dark);
-        }
-        else {
+        } else {
             anchorPane.getStylesheets().add(light);
         }
         darkmode.setSelected(pref.getBoolean("darkmode", true));
@@ -48,12 +50,12 @@ public class loginController extends controller {
 
     public void startMusic() {
         try {
-            File musicFile = new File(getClass().getResource("/javafx/resources/music").getPath());
+            File musicFile = new File(getClass().getResource("/music").getPath());
             File[] musicList = musicFile.listFiles();
 
             assert musicList != null;
             int number = (int) Math.round(Math.random() * (musicList.length - 1));
-            String musicPath = "/javafx/resources/music/" + musicList[number].getName();
+            String musicPath = "/music/" + musicList[number].getName();
             String musicGet = getClass().getResource(musicPath).toExternalForm();
 
             Media music = new Media(musicGet);
@@ -63,8 +65,7 @@ public class loginController extends controller {
             }
             mediaPlayer.setVolume(pref.getDouble("volume", 100) / 100);
             mediaPlayer.setOnEndOfMedia(this::startMusic);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -76,10 +77,9 @@ public class loginController extends controller {
         if (tries < 3 && username.equals("Dan Dan") && password.equals("SecretSauce")) {
             saveLoginPrefs();
             gotoMenu(actionEvent);
-        }
-        else {
+        } else {
             tries++;
-            if(tries >= 3) {
+            if (tries >= 3) {
                 warning.setText("Failed too many times,\nplease restart");
             }
             warning.setVisible(true);

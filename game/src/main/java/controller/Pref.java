@@ -1,7 +1,9 @@
+package controller;
+
 import java.util.prefs.Preferences;
 
 /**
- * Class acting as interface for th preferences API.
+ * Class acting as interface for the preferences API.
  */
 public class Pref {
     private transient Preferences prefs;

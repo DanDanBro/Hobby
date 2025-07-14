@@ -1,5 +1,6 @@
 package controller;
 
+import controller.chess.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -8,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import sample.controller.chess.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,14 +34,14 @@ public class chessController extends controller {
     Set<chessPiece> Checking; //Set of pieces that have the king in check (should never be able to contain more than 2 pieces in a normal game.
     Set<ChessCoordinate> blockableTiles; //Set of tiles that are selectable for pieces to block a check
 
-    public static ChessCoordinate[] dirs = new ChessCoordinate[] {new ChessCoordinate(-1, -1), new ChessCoordinate(-1, 0),
-        new ChessCoordinate(-1, 1), new ChessCoordinate(0, -1),
-        new ChessCoordinate(0, 1), new ChessCoordinate(1, -1),
-        new ChessCoordinate(1, 0), new ChessCoordinate(1, 1)};
+    public static ChessCoordinate[] dirs = new ChessCoordinate[]{new ChessCoordinate(-1, -1), new ChessCoordinate(-1, 0),
+            new ChessCoordinate(-1, 1), new ChessCoordinate(0, -1),
+            new ChessCoordinate(0, 1), new ChessCoordinate(1, -1),
+            new ChessCoordinate(1, 0), new ChessCoordinate(1, 1)};
     public static ChessCoordinate[] knightDirs = {new ChessCoordinate(-2, -1), new ChessCoordinate(-2, 1),
-        new ChessCoordinate(-1, -2), new ChessCoordinate(-1, 2),
-        new ChessCoordinate(1, -2), new ChessCoordinate(1, 2),
-        new ChessCoordinate(2, -1), new ChessCoordinate(2, 1)};
+            new ChessCoordinate(-1, -2), new ChessCoordinate(-1, 2),
+            new ChessCoordinate(1, -2), new ChessCoordinate(1, 2),
+            new ChessCoordinate(2, -1), new ChessCoordinate(2, 1)};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,7 +66,7 @@ public class chessController extends controller {
         for (int i = 0; i < 8; i++) {
             int k = i * 8;
             for (int j = 0; j < 8; j++) {
-                int pos = k+j;
+                int pos = k + j;
                 StackPane spane = (StackPane) gridPane.getChildren().get(pos);
                 if (((i % 2) + j) % 2 == 0) {
                     spane.setStyle("-fx-background-color: linear-gradient(#dc9556, #e8b548); -fx-border-color: black;");
@@ -79,7 +79,7 @@ public class chessController extends controller {
         }
 
         //Initializing moveset of all pieces on the board
-        for(Map.Entry<ChessCoordinate, chessPiece> p: board.entrySet()) {
+        for (Map.Entry<ChessCoordinate, chessPiece> p : board.entrySet()) {
             p.getValue().checkMoves(board);
         }
 
@@ -102,42 +102,45 @@ public class chessController extends controller {
      */
     public void fillBeginPositionsWithScanner(Scanner sc) {
         int i = 0;
-        while(sc.hasNextInt() && i < 64) {
+        while (sc.hasNextInt() && i < 64) {
             int k = sc.nextInt();
             boolean isWhite = true;
             isWhite = k >= 10;
-            switch (k%10) {
+            switch (k % 10) {
                 case 1:
                     if (isWhite) {
-                        if(KingW == null) {
+                        if (KingW == null) {
                             KingW = new King(i, isWhite);
-                        }
-                        else {
+                        } else {
                             System.out.println("Invalid board, multiple Kings detected");
                         }
                         board.put(new ChessCoordinate(i), KingW);
-                    }
-                    else {
-                        if(KingB == null) {
+                    } else {
+                        if (KingB == null) {
                             KingB = new King(i, isWhite);
-                        }
-                        else {
+                        } else {
                             System.out.println("Invalid board, multiple Kings detected");
                         }
                         board.put(new ChessCoordinate(i), KingB);
                     }
                     break;
-                case 2: board.put(new ChessCoordinate(i), new Queen(i, isWhite));
+                case 2:
+                    board.put(new ChessCoordinate(i), new Queen(i, isWhite));
                     break;
-                case 3: board.put(new ChessCoordinate(i), new Rook(i, isWhite));
+                case 3:
+                    board.put(new ChessCoordinate(i), new Rook(i, isWhite));
                     break;
-                case 4: board.put(new ChessCoordinate(i), new Bishop(i, isWhite));
+                case 4:
+                    board.put(new ChessCoordinate(i), new Bishop(i, isWhite));
                     break;
-                case 5: board.put(new ChessCoordinate(i), new Knight(i, isWhite));
+                case 5:
+                    board.put(new ChessCoordinate(i), new Knight(i, isWhite));
                     break;
-                case 6: board.put(new ChessCoordinate(i), new Pawn(i, isWhite));
+                case 6:
+                    board.put(new ChessCoordinate(i), new Pawn(i, isWhite));
                     break;
-                default: break;
+                default:
+                    break;
             }
             updateGuiPiece(i);
             i++;
@@ -163,15 +166,14 @@ public class chessController extends controller {
     Method to update movesets of all effected pieces by a change on the base coordinate
      */
     public static void updateBoard(ChessCoordinate base, HashMap<ChessCoordinate, chessPiece> updateBoard) {
-        for(ChessCoordinate i : dirs) {
+        for (ChessCoordinate i : dirs) {
             ChessCoordinate check = base.copy();
             check.addMove(i);
-            while(check.checkValidCoord()) {
-                if(updateBoard.get(check) != null) {
+            while (check.checkValidCoord()) {
+                if (updateBoard.get(check) != null) {
                     updateBoard.get(check).checkMoves(updateBoard);
                     break;
-                }
-                else {
+                } else {
                     check.addMove(i);
                 }
             }
@@ -180,7 +182,7 @@ public class chessController extends controller {
         for (ChessCoordinate i : knightDirs) {
             ChessCoordinate check = base.copy();
             check.addMove(i);
-            if(check.checkValidCoord()) {
+            if (check.checkValidCoord()) {
                 if (updateBoard.get(check) != null && (updateBoard.get(check) instanceof Knight)) {
                     updateBoard.get(check).checkMoves(updateBoard);
                 }
@@ -194,9 +196,9 @@ public class chessController extends controller {
      */
     public static HashSet<chessPiece> positionInCheck(King check, HashMap<ChessCoordinate, chessPiece> boardChecked) {
         HashSet<chessPiece> pieceChecking = new HashSet<>();
-        for(Map.Entry<ChessCoordinate, chessPiece> entry : boardChecked.entrySet()) {
-            if(entry.getValue().isWhite() ^ check.isWhite()) {
-                if(entry.getValue().getMoves().contains(check.getPosition())) {
+        for (Map.Entry<ChessCoordinate, chessPiece> entry : boardChecked.entrySet()) {
+            if (entry.getValue().isWhite() ^ check.isWhite()) {
+                if (entry.getValue().getMoves().contains(check.getPosition())) {
                     pieceChecking.add(entry.getValue());
                 }
             }
@@ -208,13 +210,12 @@ public class chessController extends controller {
     Method called after a move to check the game state in terms of checks and mates.
      */
     public void checkChecks() {
-        if(whiteMove) {
+        if (whiteMove) {
             Checking = positionInCheck(KingW, board);
             KingW.checkMoves(board);
             inCheck(KingW);
             isMated(KingW);
-        }
-        else {
+        } else {
             Checking = positionInCheck(KingB, board);
             KingB.checkMoves(board);
             inCheck(KingB);
@@ -233,11 +234,11 @@ public class chessController extends controller {
             blockableTiles.add(c.getPosition());
             if (!c.getClass().isInstance(knight)) {
                 ChessCoordinate movement = (ChessCoordinate) c.getPosition().copy().removeMove(king.getPosition());
-                movement.x = (int) ((movement.x >= 0) ? Math.ceil(movement.x / 8.0) : Math.floor(movement.x/8.0));
-                movement.y = (int) ((movement.y >= 0) ? Math.ceil(movement.y / 8.0) : Math.floor(movement.y/8.0));
+                movement.x = (int) ((movement.x >= 0) ? Math.ceil(movement.x / 8.0) : Math.floor(movement.x / 8.0));
+                movement.y = (int) ((movement.y >= 0) ? Math.ceil(movement.y / 8.0) : Math.floor(movement.y / 8.0));
                 ChessCoordinate check = (ChessCoordinate) king.getPosition().copy().addMove(movement);
 
-                while(!check.equals(c.getPosition())) {
+                while (!check.equals(c.getPosition())) {
                     blockableTiles.add(check.copy());
                     check.addMove(movement);
                 }
@@ -250,21 +251,19 @@ public class chessController extends controller {
      */
     public boolean isMated(King king) {
         //Passing new hashmap/copy of board to avoid concurrentmodification exception (deleting entry from hashmap while iterating over it)
-        for(Map.Entry<ChessCoordinate, chessPiece> entry : board.entrySet()) {
-            if(entry.getValue().isWhite() == king.isWhite()) {
+        for (Map.Entry<ChessCoordinate, chessPiece> entry : board.entrySet()) {
+            if (entry.getValue().isWhite() == king.isWhite()) {
                 if (entry.getValue().equals(king)) {
                     HashSet<ChessCoordinate> moves = new HashSet<>(king.getMoves());
                     moves.removeIf((ChessCoordinate cc) -> entry.getValue().checkIfMoveIntoCheck(cc, new HashMap<>(board)));
                     if (!moves.isEmpty()) {
                         return false;
                     }
-                }
-                else {
+                } else {
                     HashSet<ChessCoordinate> checks;
                     if (Checking.isEmpty()) {
                         checks = new HashSet<>(entry.getValue().getMoves());
-                    }
-                    else {
+                    } else {
                         checks = new HashSet<>(blockableTiles);
                         checks.retainAll(entry.getValue().getMoves());
                     }
@@ -279,12 +278,10 @@ public class chessController extends controller {
         System.out.println("Game over");
         if (Checking.isEmpty()) {
             System.out.println("Stalemate");
-        }
-        else {
+        } else {
             if (whiteMove) {
                 System.out.println("White checkmated, Black won");
-            }
-            else {
+            } else {
                 System.out.println("Black checkmated, White won");
             }
         }
@@ -299,31 +296,31 @@ public class chessController extends controller {
     -------------------- GUI --------------------
      */
 
-    private final String resources = "/javafx/resources/chess";
+    private final String resources = "/chess";
     //@TODO add into preferences
-    public String skinSet = "/classic/";
+    public String skinSet = "/chess/classic/";
 
     /*
     Method handling the selecting of a tile on the board.
      */
     public void selectTile(MouseEvent mouseEvent) {
-        if(!gameRunning) {
+        if (!gameRunning) {
             return;
         }
         //Getting the stackpane
         ChessCoordinate pos = null;
-        if(mouseEvent.getSource() instanceof StackPane) {
+        if (mouseEvent.getSource() instanceof StackPane) {
             StackPane spane = (StackPane) mouseEvent.getSource();
             pos = new ChessCoordinate(gridPane.getRowIndex(spane), gridPane.getColumnIndex(spane));
         }
 
         //Check if a piece is being selected
-        if(board.get(pos) != null) {
+        if (board.get(pos) != null) {
 
             //Check for opponent colour piece
-            if(whiteMove ^ board.get(pos).isWhite()) {
+            if (whiteMove ^ board.get(pos).isWhite()) {
                 //Check if valid take
-                if(highlighted.contains(pos) && selectedPos != null) {
+                if (highlighted.contains(pos) && selectedPos != null) {
                     movePiece(selectedPos, pos, board);
                     updateGuiPiece(selectedPos.toIntPos());
                     updateGuiPiece(pos.toIntPos());
@@ -336,10 +333,9 @@ public class chessController extends controller {
                     selectedPos = null;
                     dehighlight();
                 }
-            }
-            else {
+            } else {
                 //Check if deselecting selected piece
-                if(pos.equals(selectedPos)) {
+                if (pos.equals(selectedPos)) {
                     selectedPos = null;
                     dehighlight();
                 }
@@ -355,8 +351,7 @@ public class chessController extends controller {
                     highlight();
                 }
             }
-        }
-        else {
+        } else {
             //Check valid move into empty space
             if (selectedPos != null && highlighted.contains(pos)) {
                 movePiece(selectedPos, pos, board);
@@ -376,35 +371,35 @@ public class chessController extends controller {
 
     public void addHoverListeners(StackPane stackPane) {
         stackPane.addEventHandler(MouseEvent.MOUSE_ENTERED,
-            new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent e) {
-                    StackPane spane = (StackPane) e.getSource();
-                    if (highlighted.contains(new ChessCoordinate(gridPane.getRowIndex(spane), gridPane.getColumnIndex(spane)))) {
-                        spane.setStyle("-fx-background-color: pink; -fx-border-color: black;");
-                    }
-                }
-            });
-
-        stackPane.addEventHandler(MouseEvent.MOUSE_EXITED,
-            new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent e) {
-                    StackPane spane = (StackPane) e.getSource();
-                    ChessCoordinate coord = new ChessCoordinate(gridPane.getRowIndex(spane), gridPane.getColumnIndex(spane));
-                    if (highlighted.contains(coord)) {
-                        if ((coord.getX() + coord.getY()) % 2 == 0) {
-                            spane.setStyle("-fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 70% , pink, #dc9556, #e8b548, pink);");
-                        } else {
-                            spane.setStyle("-fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 70% , pink,  #2c2c47, #33334d, pink);");
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        StackPane spane = (StackPane) e.getSource();
+                        if (highlighted.contains(new ChessCoordinate(gridPane.getRowIndex(spane), gridPane.getColumnIndex(spane)))) {
+                            spane.setStyle("-fx-background-color: pink; -fx-border-color: black;");
                         }
                     }
-                }
-            });
+                });
+
+        stackPane.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent e) {
+                        StackPane spane = (StackPane) e.getSource();
+                        ChessCoordinate coord = new ChessCoordinate(gridPane.getRowIndex(spane), gridPane.getColumnIndex(spane));
+                        if (highlighted.contains(coord)) {
+                            if ((coord.getX() + coord.getY()) % 2 == 0) {
+                                spane.setStyle("-fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 70% , pink, #dc9556, #e8b548, pink);");
+                            } else {
+                                spane.setStyle("-fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 70% , pink,  #2c2c47, #33334d, pink);");
+                            }
+                        }
+                    }
+                });
     }
 
     public void dehighlight() {
-        for(ChessCoordinate i : highlighted) {
+        for (ChessCoordinate i : highlighted) {
             StackPane spane = (StackPane) gridPane.getChildren().get(i.toIntPos());
 
             if ((i.getX() + i.getY()) % 2 == 0) {
@@ -417,7 +412,7 @@ public class chessController extends controller {
     }
 
     public void highlight() {
-        for(ChessCoordinate i : highlighted) {
+        for (ChessCoordinate i : highlighted) {
             StackPane spane = (StackPane) gridPane.getChildren().get(i.toIntPos());
 
             if ((i.getX() + i.getY()) % 2 == 0) {
@@ -450,8 +445,7 @@ public class chessController extends controller {
         if (piece == null) {
             try {
                 spane.getChildren().remove(0);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 //Nothing on this tile
             }
             return;
@@ -460,17 +454,15 @@ public class chessController extends controller {
         String imagePath = resources + skinSet + classSplit[classSplit.length - 1];
         if (piece.isWhite()) {
             imagePath = imagePath + "W.png";
-        }
-        else {
+        } else {
             imagePath = imagePath + "B.png";
         }
 
         Image pieceImage = new Image(getClass().getResource(imagePath).toString());
         ImageView imgView = new ImageView(pieceImage);
-        try{
+        try {
             spane.getChildren().remove(0);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //No piece was taken
         }
         spane.getChildren().add(imgView);

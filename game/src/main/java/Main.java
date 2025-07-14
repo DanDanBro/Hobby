@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("resources/start.fxml"));
-        primaryStage.getIcons().add(new Image(getClass().getResource("/javafx/resources/DDWORLDICON.png").toURI().toString()));
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/start.fxml"));
+        primaryStage.getIcons().add(new Image(getClass().getResource("/DDWORLDICON.png").toURI().toString()));
         primaryStage.setTitle("DD World");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();

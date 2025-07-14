@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.menuController">
+    <children>
+        <Button fx:id="gameButton" layoutX="169.0" layoutY="300.0" mnemonicParsing="false" onAction="#gotoGame"
+                prefHeight="74.0" prefWidth="171.0" text="Game"/>
+        <Button fx:id="calcButton" layoutX="490.0" layoutY="300.0" mnemonicParsing="false" onAction="#gotoCalc"
+                prefHeight="74.0" prefWidth="171.0" text="Calculator"/>
+        <MenuButton mnemonicParsing="false" text="Options">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#gotoSettings" text="Settings"/>
+                <MenuItem fx:id="logOut" mnemonicParsing="false" onAction="#logOut" text="Log out"/>
+            </items>
+        </MenuButton>
+    </children>
+</AnchorPane>
