@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.settingsController">
+    <CheckBox fx:id="darkmode" layoutX="204.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#themeSwitch" scaleX="2.0" scaleY="2.0" scaleZ="2.0" text="Darkmode" textFill="WHITE" />
+    <CheckBox fx:id="music" layoutX="468.0" layoutY="170.0" mnemonicParsing="false" onAction="#musicSwitch" scaleX="2.0" scaleY="2.0" scaleZ="2.0" text="Music" textFill="WHITE" />
+    <CheckBox fx:id="soundEffects" layoutX="489.0" layoutY="235.0" mnemonicParsing="false" onAction="#soundSwitch" scaleX="2.0" scaleY="2.0" scaleZ="2.0" text="Sound effects" textFill="WHITE" />
+
+    <Label layoutX="364.0" layoutY="55.0" prefHeight="30.0" prefWidth="77.0" text="Settings">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
+   <Button fx:id="menu" layoutX="379.0" layoutY="494.0" mnemonicParsing="false" onAction="#gotoMenu" scaleX="2.0" scaleY="2.0" scaleZ="2.0" text="Back" />
+   <Slider fx:id="volumeSlider" layoutX="659.0" layoutY="161.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="14.0" />
+   <Label fx:id="volumeLevel" layoutX="688.0" layoutY="203.0" />
+   <Button fx:id="volumePlus" layoutX="653.0" layoutY="133.0" mnemonicParsing="false" onAction="#setVolumePlus" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="+" textFill="WHITE" />
+    <Button fx:id="volumeMin" layoutX="655.0" layoutY="261.0" mnemonicParsing="false" onAction="#setVolumeMin" style="-fx-border-color: transparent; -fx-background-color: transparent;" text="-" textFill="WHITE" />
+</AnchorPane>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.loginController">
+    <children>
+        <TextField fx:id="usernameField" layoutX="300.0" layoutY="246.0" onAction="#logIn" prefHeight="27.0" prefWidth="205.0" promptText="username" />
+        <PasswordField fx:id="passwordField" layoutX="300.0" layoutY="286.0" onAction="#logIn" prefHeight="27.0" prefWidth="205.0" promptText="password" />
+        <CheckBox fx:id="remember" layoutX="528.0" layoutY="251.0" mnemonicParsing="false" text="Remember" textFill="WHITE" />
+        <CheckBox fx:id="darkmode" layoutX="528.0" layoutY="291.0" mnemonicParsing="false" onMouseClicked="#themeSwitch" text="Darkmode" textFill="WHITE" />
+        <Button fx:id="loginButton" layoutX="300.0" layoutY="344.0" mnemonicParsing="false" onAction="#logIn" prefHeight="37.0" prefWidth="76.0" text="Log in" />
+        <Button fx:id="registerButton" disable="true" layoutX="430.0" layoutY="344.0" mnemonicParsing="false" onAction="#gotoRegister" prefHeight="37.0" prefWidth="76.0" style="-fx-background-color: white;" text="Register" />
+        <Label layoutX="213.0" layoutY="251.0" text="Username:" textFill="WHITE" />
+        <Label layoutX="200.0" layoutY="153.0" prefHeight="30.0" prefWidth="419.0" text="Please Log in to your account to start the game">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="216.0" layoutY="291.0" text="Password:" textFill="WHITE" />
+        <Label fx:id="warning" layoutX="300.0" layoutY="183.0" prefHeight="59.0" prefWidth="492.0" text="Failed to log in try again" textFill="RED" visible="false">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

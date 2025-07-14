@@ -1,0 +1,41 @@
+.root{
+    -fx-background-color: #e8b548;
+}
+
+#anchorPane{
+    -fx-background-color: linear-gradient(#dc9556, #e8b548);
+}
+
+.label{
+    -fx-text-fill: #33334d;
+}
+
+.button{
+    -fx-background-radius: 10;
+}
+
+.menu-button {
+    -fx-background-color: linear-gradient(#2c2c47, #33334d);
+}
+
+.menu-button .label{
+    -fx-text-fill: #e8b548;
+}
+
+.menu-item .label{
+    -fx-text-fill: #e8b548;
+}
+
+.context-menu{
+    -fx-background-color: linear-gradient(#2c2c47, #33334d);
+}
+
+.list-view{
+    -fx-background-color: linear-gradient(#dc9556, #e8b548);
+    -fx-border-color: #2c2c47;
+}
+
+.list-cell{
+    -fx-background-color: linear-gradient(#dc9556, #e8b548);
+    -fx-text-fill: #33334d;
+}
