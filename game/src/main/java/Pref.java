@@ -1,5 +1,3 @@
-package main.java.javafx;
-
 import java.util.prefs.Preferences;
 
 /**

@@ -1,4 +1,4 @@
-package main.java.javafx.controller;
+package controller;
 
 public class menuController extends controller {
 

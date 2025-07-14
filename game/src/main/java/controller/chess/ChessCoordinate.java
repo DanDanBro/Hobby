@@ -1,6 +1,6 @@
-package main.java.javafx.controller.chess;
+package controller.chess;
 
-import main.java.javafx.controller.Coordinate;
+import controller.Coordinate;
 
 public class ChessCoordinate extends Coordinate {
 

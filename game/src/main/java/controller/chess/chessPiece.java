@@ -1,6 +1,6 @@
-package main.java.javafx.controller.chess;
+package controller.chess;
 
-import main.java.javafx.controller.chessController;
+import controller.chessController;
 
 import java.util.HashMap;
 import java.util.HashSet;

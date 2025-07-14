@@ -1,4 +1,4 @@
-package main.java.javafx.controller.chess;
+package controller.chess;
 
 public class Queen extends chessPiece {
 

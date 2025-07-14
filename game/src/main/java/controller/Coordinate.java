@@ -1,4 +1,4 @@
-package main.java.javafx.controller;
+package controller;
 
 //@TODO full restructure to coordinate mapping
 public class Coordinate {

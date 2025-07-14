@@ -1,4 +1,4 @@
-package main.java.javafx.controller.chess;
+package controller.chess;
 
 import java.util.HashMap;
 import java.util.HashSet;
