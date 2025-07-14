@@ -56,7 +56,7 @@ public class chessController extends controller {
 
         //Initialize the board logics
         try {
-            Scanner sc = getBeginPositionScanner("src/javafx/controller/chess/positions/normalSPositions");
+            Scanner sc = getBeginPositionScanner(getClass().getResource("/chess/positions/normalSPositions.txt").getPath());
             fillBeginPositionsWithScanner(sc);
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
@@ -298,7 +298,7 @@ public class chessController extends controller {
 
     private final String resources = "/chess";
     //@TODO add into preferences
-    public String skinSet = "/chess/classic/";
+    public String skinSet = "/classic/";
 
     /*
     Method handling the selecting of a tile on the board.
