@@ -1,16 +1,12 @@
-package util;
+package game.util;
 
-//@TODO full restructure to coordinate mapping
+import java.util.Objects;
+
 public class Coordinate {
-    protected int x; //row
-    protected int y; //column
-    protected int maxLength = 1;
-    protected int maxHeight = 1;
-
-    public Coordinate(int pos) {
-        this.x = pos / maxLength;
-        this.y = pos % maxLength;
-    }
+    private int x; //row
+    private int y; //column
+    protected int maxLength = Integer.MAX_VALUE;
+    protected int maxHeight = Integer.MAX_VALUE;
 
     public Coordinate(int x, int y) {
         this.x = x;
@@ -34,18 +30,28 @@ public class Coordinate {
     }
 
     public int toIntPos() {
-        return this.x * maxLength + this.y;
+        return this.x + this.y * maxLength;
     }
 
-    public Coordinate addMove(int move) {
-        this.x += (move / maxLength);
-        this.y += (move % maxLength);
+    public Coordinate fromIntPos(int i) {
+        return new Coordinate(i % this.maxLength, i / this.maxLength);
+    }
+
+    public Coordinate addMove(int x, int y) {
+        this.x += x;
+        this.y += y;
         return this;
     }
 
     public Coordinate addMove(Coordinate add) {
         this.x += add.x;
         this.y += add.y;
+        return this;
+    }
+
+    public Coordinate removeMove(int x, int y) {
+        this.x -= x;
+        this.y -= y;
         return this;
     }
 
@@ -74,15 +80,11 @@ public class Coordinate {
         }
 
         Coordinate c = (Coordinate) obj;
-
         return this.x == c.x && this.y == c.y;
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + this.x;
-        result = 31 * result + this.y;
-        return result;
+        return Objects.hash(x, y);
     }
 }

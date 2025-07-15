@@ -1,5 +1,7 @@
 package game.chess.pieces;
 
+import game.util.GamePieceColor;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,8 +13,8 @@ public class Knight extends ChessPiece {
             new ChessCoordinate(1, -2), new ChessCoordinate(1, 2),
             new ChessCoordinate(2, -1), new ChessCoordinate(2, 1)};
 
-    public Knight(int i, boolean b) {
-        super(i, b);
+    public Knight(int x, int y, GamePieceColor b) {
+        super(x, y, b);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class Knight extends ChessPiece {
             ChessCoordinate check = this.getPosition().copy();
             check.addMove(i);
             if (check.checkValidCoord()) {
-                if (board.get(check) == null || board.get(check).isWhite() ^ this.isWhite()) {
+                if (board.get(check) == null || board.get(check).getPieceColor() != this.getPieceColor()) {
                     res.add(check.copy());
                 }
             }

@@ -1,6 +1,7 @@
 package game.chess.pieces;
 
 import game.chess.controller.ChessController;
+import game.util.GamePieceColor;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,14 +10,14 @@ import java.util.Set;
 
 public class ChessPiece {
 
-    private final boolean white;
+    private final GamePieceColor pieceColor;
     private ChessCoordinate pos;
     private ChessCoordinate[] dirs;
     private Set<ChessCoordinate> moves;
 
-    public ChessPiece(int pos, boolean white) {
-        this.pos = new ChessCoordinate(pos);
-        this.white = white;
+    public ChessPiece(int x, int y, GamePieceColor pieceColor) {
+        this.pos = new ChessCoordinate(x, y);
+        this.pieceColor = pieceColor;
     }
 
     public ChessCoordinate getPosition() {
@@ -27,8 +28,8 @@ public class ChessPiece {
         this.pos = p;
     }
 
-    public boolean isWhite() {
-        return white;
+    public GamePieceColor getPieceColor() {
+        return pieceColor;
     }
 
     public ChessCoordinate[] getDirs() {
@@ -47,9 +48,9 @@ public class ChessPiece {
         this.moves = moves;
     }
 
-    /*
-        Method to set and return all moves a piece can make, this does not check if the move is actually legal in terms of checks
-         */
+    /**
+     * Method to set and return all moves a piece can make, this does not check if the move is actually legal in terms of checks
+     */
     public Set<ChessCoordinate> checkMoves(HashMap<ChessCoordinate, ChessPiece> board) {
         Set<ChessCoordinate> res = new HashSet<>();
         for (ChessCoordinate i : dirs) {
@@ -59,7 +60,7 @@ public class ChessPiece {
                 if (board.get(check) == null) {
                     res.add(check.copy());
                     check.addMove(i);
-                } else if (board.get(check).isWhite() ^ this.isWhite()) {
+                } else if (board.get(check).getPieceColor() != this.getPieceColor()) {
                     res.add(check.copy());
                     break;
                 } else {
@@ -71,13 +72,13 @@ public class ChessPiece {
         return moves;
     }
 
-    /*
-    Method to find same coloured king on the board, may be moved into the chesscontroller in the future
+    /**
+     * Method to find same coloured king on the board, may be moved into the chesscontroller in the future
      */
     public King getKing(HashMap<ChessCoordinate, ChessPiece> board) {
         for (Map.Entry<ChessCoordinate, ChessPiece> entry : board.entrySet()) {
             if (entry.getValue() instanceof King) {
-                if (entry.getValue().isWhite() == this.isWhite()) {
+                if (entry.getValue().getPieceColor() == this.getPieceColor()) {
                     return (King) entry.getValue();
                 }
             }
@@ -85,8 +86,8 @@ public class ChessPiece {
         return null;
     }
 
-    /*
-    Check the legality of a move in regard to putting your own king in check.
+    /**
+     * Check the legality of a move in regard to putting your own king in check.
      */
     public boolean checkIfMoveIntoCheck(ChessCoordinate check, HashMap<ChessCoordinate, ChessPiece> board) {
         boolean res = true;

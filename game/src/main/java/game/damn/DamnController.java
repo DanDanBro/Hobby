@@ -2,6 +2,7 @@ package game.damn;
 
 
 import controller.Controller;
+import game.util.GamePieceColor;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -32,7 +33,7 @@ public class DamnController extends Controller {
     Image BlackPiece;
     Image WhitePiece;
 
-    boolean whiteMove; //True: white to move, False: black to move
+    private GamePieceColor colorToMove;
     public static HashMap<Integer, DamnTuple> board; //Board, key is position
     public static HashMap<Integer, DamnTuple> taken; //Memory of last move, key is position
     public static HashMap<Integer, ArrayList<ArrayList<Integer>>> highlighted; //Highlighted tiles, key is position, Arraylist is possible paths
@@ -80,7 +81,7 @@ public class DamnController extends Controller {
                 }
             }
         }
-        whiteMove = true;
+        colorToMove = colorToMove.nextColorToMove();
     }
 
     //Not properly called by checkDamn
