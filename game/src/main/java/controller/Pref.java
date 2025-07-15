@@ -6,7 +6,7 @@ import java.util.prefs.Preferences;
  * Class acting as interface for the preferences API.
  */
 public class Pref {
-    private transient Preferences prefs;
+    public transient Preferences prefs;
 
     /**
      * Sets default preference for new instance.
@@ -27,6 +27,7 @@ public class Pref {
 
     /**
      * returns the preferences.
+     *
      * @return prefs.
      */
     public Preferences getPrefs() {

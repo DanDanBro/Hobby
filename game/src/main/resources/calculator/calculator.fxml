@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.CalculatorController">
+    <children>
+        <TextField fx:id="calculation" onAction="#solve" prefHeight="104.0" prefWidth="550.0" promptText="0">
+            <font>
+                <Font size="45.0"/>
+            </font>
+        </TextField>
+        <ListView fx:id="listView" layoutX="555.0" layoutY="30.0" onMouseClicked="#putHistory" prefHeight="570.0"
+                  prefWidth="245.0"/>
+        <Button fx:id="equals" layoutX="441.0" layoutY="549.0" mnemonicParsing="false" onAction="#solve"
+                prefHeight="50.0" prefWidth="110.0" text="="/>
+        <Button fx:id="plus" layoutX="441.0" layoutY="498.0" mnemonicParsing="false" onAction="#twoInput"
+                prefHeight="50.0" prefWidth="110.0" text="+"/>
+        <Button fx:id="minus" layoutX="441.0" layoutY="447.0" mnemonicParsing="false" onAction="#twoInput"
+                prefHeight="50.0" prefWidth="110.0" text="-"/>
+        <Button fx:id="times" layoutX="441.0" layoutY="396.0" mnemonicParsing="false" onAction="#twoInput"
+                prefHeight="50.0" prefWidth="110.0" text="×"/>
+        <Button fx:id="divided" layoutX="441.0" layoutY="345.0" mnemonicParsing="false" onAction="#twoInput"
+                prefHeight="50.0" prefWidth="110.0" text="÷"/>
+        <Button fx:id="modulo" layoutX="441.0" layoutY="294.0" mnemonicParsing="false" onAction="#twoInput"
+                prefHeight="50.0" prefWidth="110.0" text="mod"/>
+        <Button fx:id="backspace" layoutX="441.0" layoutY="243.0" mnemonicParsing="false" onAction="#backspace"
+                prefHeight="50.0" prefWidth="110.0" text="←"/>
+        <Button fx:id="clear" layoutX="330.0" layoutY="243.0" mnemonicParsing="false" onAction="#clear"
+                prefHeight="50.0" prefWidth="110.0" text="C/CE"/>
+        <Button fx:id="tan" layoutX="220.0" layoutY="243.0" mnemonicParsing="false" onAction="#oneInput"
+                prefHeight="50.0" prefWidth="110.0" text="tan"/>
+        <Button fx:id="cos" layoutX="110.0" layoutY="243.0" mnemonicParsing="false" onAction="#oneInput"
+                prefHeight="50.0" prefWidth="110.0" text="cos"/>
+        <Button fx:id="sin" layoutY="243.0" mnemonicParsing="false" onAction="#oneInput" prefHeight="50.0"
+                prefWidth="110.0" text="sin"/>
+        <Button fx:id="Exp" layoutX="330.0" layoutY="294.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="E"/>
+        <Button fx:id="power" layoutX="220.0" layoutY="294.0" mnemonicParsing="false" onAction="#twoInput"
+                prefHeight="50.0" prefWidth="110.0" text="xʸ"/>
+        <Button fx:id="powerthree" layoutX="110.0" layoutY="294.0" mnemonicParsing="false" onAction="#oneInput"
+                prefHeight="50.0" prefWidth="110.0" text="x³"/>
+        <Button fx:id="powertwo" layoutY="294.0" mnemonicParsing="false" onAction="#oneInput" prefHeight="50.0"
+                prefWidth="110.0" text="x²"/>
+        <Button fx:id="oneover" layoutX="330.0" layoutY="345.0" mnemonicParsing="false" onAction="#oneInput"
+                prefHeight="50.0" prefWidth="110.0" text="1/x"/>
+        <Button fx:id="sqrt" layoutX="220.0" layoutY="345.0" mnemonicParsing="false" onAction="#twoInput"
+                prefHeight="50.0" prefWidth="110.0" text="ʸ√x"/>
+        <Button fx:id="threesqrt" layoutX="110.0" layoutY="345.0" mnemonicParsing="false" onAction="#oneInput"
+                prefHeight="50.0" prefWidth="110.0" text="³√x"/>
+        <Button fx:id="twosqrt" layoutY="345.0" mnemonicParsing="false" onAction="#oneInput" prefHeight="50.0"
+                prefWidth="110.0" text="²√x"/>
+        <Button fx:id="nine" layoutX="330.0" layoutY="396.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="9"/>
+        <Button fx:id="eight" layoutX="220.0" layoutY="396.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="8"/>
+        <Button fx:id="seven" layoutX="110.0" layoutY="396.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="7"/>
+        <Button fx:id="epower" layoutY="396.0" mnemonicParsing="false" onAction="#oneInput" prefHeight="50.0"
+                prefWidth="110.0" text="eˣ"/>
+        <Button fx:id="six" layoutX="330.0" layoutY="447.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="6"/>
+        <Button fx:id="five" layoutX="220.0" layoutY="447.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="5"/>
+        <Button fx:id="four" layoutX="110.0" layoutY="447.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="4"/>
+        <Button fx:id="exponent" layoutY="447.0" mnemonicParsing="false" onAction="#oneInput" prefHeight="50.0"
+                prefWidth="110.0" text="10ˣ"/>
+        <Button fx:id="three" layoutX="330.0" layoutY="498.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="3"/>
+        <Button fx:id="two" layoutX="220.0" layoutY="498.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="2"/>
+        <Button fx:id="one" layoutX="110.0" layoutY="498.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="1"/>
+        <Button fx:id="log" layoutY="498.0" mnemonicParsing="false" onAction="#oneInput" prefHeight="50.0"
+                prefWidth="110.0" text="log"/>
+        <Button fx:id="point" layoutX="330.0" layoutY="550.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="."/>
+        <Button fx:id="zero" layoutX="220.0" layoutY="549.0" mnemonicParsing="false" onAction="#putNumber"
+                prefHeight="50.0" prefWidth="110.0" text="0"/>
+        <Button fx:id="sign" layoutX="110.0" layoutY="549.0" mnemonicParsing="false" onAction="#signSwitch"
+                prefHeight="50.0" prefWidth="110.0" text="+/-"/>
+        <Button fx:id="ln" layoutY="549.0" mnemonicParsing="false" onAction="#oneInput" prefHeight="50.0"
+                prefWidth="110.0" text="ln"/>
+        <Button fx:id="raddeg" layoutX="37.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchMode"
+                text="Rad/Deg"/>
+        <Button fx:id="second" layoutY="217.0" mnemonicParsing="false" onAction="#secondSet" text="2nd"/>
+        <Button fx:id="e" layoutX="110.0" layoutY="180.0" mnemonicParsing="false" onAction="#putE" prefHeight="50.0"
+                prefWidth="110.0" text="e"/>
+        <Button fx:id="pi" layoutX="220.0" layoutY="180.0" mnemonicParsing="false" onAction="#putPi" prefHeight="50.0"
+                prefWidth="110.0" text="π"/>
+        <Button fx:id="c" layoutX="330.0" layoutY="180.0" mnemonicParsing="false" onAction="#putLight" prefHeight="50.0"
+                prefWidth="110.0" text="c"/>
+        <Label fx:id="solution" layoutY="113.0" prefHeight="58.0" prefWidth="550.0" style="-fx-border-color: black;">
+            <font>
+                <Font size="40.0"/>
+            </font>
+        </Label>
+        <Button fx:id="back" layoutX="759.0" layoutY="1.0" mnemonicParsing="false" onAction="#gotoMenu" text="Back"/>
+        <Label fx:id="mode" layoutX="496.0" layoutY="113.0" text="RAD"/>
+        <Label fx:id="pastCalculation" layoutX="55.0" prefHeight="26.0" prefWidth="439.0">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Label>
+        <Label fx:id="warning" layoutX="14.0" layoutY="77.0" prefHeight="26.0" prefWidth="439.0">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Label>
+        <Button fx:id="factorial" disable="true" layoutX="470.0" layoutY="193.0" mnemonicParsing="false"
+                prefHeight="26.0" prefWidth="52.0" text="x!"/>
+        <Label layoutX="555.0" prefHeight="26.0" prefWidth="202.0" text="History"/>
+
+    </children>
+</AnchorPane>

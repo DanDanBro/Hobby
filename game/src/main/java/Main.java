@@ -9,7 +9,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/start.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/login/start.fxml"));
         primaryStage.getIcons().add(new Image(getClass().getResource("/DDWORLDICON.png").toURI().toString()));
         primaryStage.setTitle("DD World");
         primaryStage.setScene(new Scene(root, 800, 600));
